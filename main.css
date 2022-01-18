@@ -1,0 +1,284 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Source Sans Pro", sans-serif;
+  scroll-behavior: smooth;
+}
+
+li a:link {
+  color: blueviolet;
+}
+
+li a:visited {
+  color: palegreen;
+}
+
+a:active {
+  background-color: plum;
+}
+
+img {
+  width: 50%;
+  float: right;
+}
+
+.vertical-img {
+  vertical-align: baseline;
+  width: 5px;
+}
+
+figcaption {
+  font-size: 20px;
+  margin-top: 2rem;
+}
+
+.show-list-style {
+  list-style: circle;
+  list-style-position: inside;
+  list-style-image: url("https://www.w3schools.com/cssref/sqpurple.gif");
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+nav {
+  background-color: #000;
+}
+
+.menu {
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+  width: auto;
+}
+
+.menu ul {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+}
+
+.menu ul li {
+  list-style: none;
+}
+
+.menu ul li,
+.menu ul li a {
+  color: #fff;
+  line-height: 44px;
+  text-decoration: none;
+}
+
+.menu ul li a.menu-item {
+  transform: scale(1);
+  transition: 0.5s;
+  display: block;
+}
+
+.img-holder {
+  background-image: url(https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg);
+  background-repeat: no-repeat;
+  /* background-size: cover; */
+  background-size: contain;
+  height: 400px;
+  width: 700px;
+  width: min(700px, 90%);
+}
+
+section {
+  width: min(90%, 1200px);
+  margin: auto;
+}
+
+main {
+  width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  page-break-after: always;
+}
+
+tbody {
+  border-width: 2px;
+  border-spacing: 5px;
+  border-color: violet;
+  border-style: dashed;
+}
+
+td,
+th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size: min(1.5rem, 3vw);
+}
+
+th {
+  text-align: left;
+  background-color: #111;
+  color: white;
+  font-size: min(1.5rem, 3vw);
+  font-weight: 400;
+}
+
+tr:nth-child(even) {
+  background: #f2f2f2;
+}
+
+caption {
+  caption-side: top;
+}
+
+input:focus {
+  background: papayawhip;
+}
+
+.process-li {
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #111;
+  letter-spacing: 3px;
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  background: rgba(128, 128, 128, 0.096);
+}
+
+.title {
+  font-family: "Dancing Script", cursive;
+  font-size: 5rem;
+  padding-top: 5rem;
+  padding-bottom: 1rem;
+}
+
+.sub-title {
+  padding-bottom: 1rem;
+  font-variant: small-caps;
+}
+
+.heading {
+  font: 3rem "Dancing Script", cursive;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  text-decoration-thickness: 0.75rem;
+  text-decoration-skip-ink: none;
+  position: relative;
+}
+
+.heading:before {
+  transition: 300ms;
+  height: 3px;
+  content: "";
+  position: absolute;
+  background-color: #111;
+  width: 50px;
+  bottom: calc(3rem - 5px);
+}
+
+.heading:hover:before {
+  width: 80px;
+}
+
+.indent-text {
+  text-indent: 10px;
+}
+
+.text {
+  font-size: min(1.5rem, 3vw);
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-all-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-evenly {
+  justify-content: space-evenly;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.input-full {
+  width: min(100%, 100px);
+}
+
+table img {
+  width: min(100%, 100px);
+}
+
+footer {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+}
+
+@media screen and (max-width: 425px) {
+  .menu ul {
+    flex-direction: column;
+    padding-left: 1rem;
+  }
+  .img-holder {
+    width: 425px;
+    height: 242px;
+  }
+}
+
+@media print {
+  nav,
+  footer,
+  .img-holder {
+    display: none;
+  }
+  .noprint {
+    display: none;
+  }
+  h2 {
+    page-break-before: auto;
+  }
+  p {
+    font-size: 14pt;
+    widows: 3;
+    orphans: 3;
+  }
+  section {
+    page-break-inside: avoid;
+    margin: 1cm;
+  }
+  li a:link,
+  li a:visited {
+    text-decoration: none;
+    color: #000;
+  }
+}
