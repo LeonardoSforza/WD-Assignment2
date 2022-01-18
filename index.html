@@ -98,54 +98,6 @@
             <th>Image</th>
           </tr>
           <tbody id="first-tbody"></tbody>
-          <!-- <tr>
-            <td>Apple</td>
-            <td>iPhone 13</td>
-            <td>IOS</td>
-            <td>6.68</td>
-            <td>
-              <img
-                src="https://www.notebookcheck.nl/uploads/tx_nbc2/AppleiPhone13ProMax.jpg"
-                alt="iPhone 13 Pro Max"
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>Apple</td>
-            <td>iPad Pro</td>
-            <td>IOS</td>
-            <td>12.9</td>
-            <td>
-              <img
-                src="https://static.iphoned.nl/orca/products/9569/apple-ipad-pro-2021.jpg"
-                alt="iPad Pro"
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>Samsung</td>
-            <td>Samsung Galaxy Z Flip3</td>
-            <td>Android</td>
-            <td>6.7</td>
-            <td>
-              <img
-                src="https://www.mytrendyphone.nl/images/Samsung-Galaxy-Z-Flip3-5G-256GB-Phantom-Black-8806092563636-19082021-01-p.jpg"
-                alt="Samsung Galaxy Z Flip3"
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>Apple</td>
-            <td>MacBook Pro</td>
-            <td>IOS</td>
-            <td>16</td>
-            <td>
-              <img
-                src="https://static.iphoned.nl/orca/products/9402/apple-macbook-pro.jpg"
-                alt="MacBook Pro"
-              />
-            </td>
-          </tr> -->
           <tr class="noprint">
             <td colspan="5">Add Content</td>
           </tr>
@@ -203,7 +155,8 @@
           </tr>
           <tr class="noprint">
             <td colspan="5" class="noprint">
-              <input type="submit" value="Submit" />
+              <input id="submit-btn" type="submit" value="Submit" />
+              <input id="reset-btn" type="reset" value="Reset" />
             </td>
           </tr>
         </table>
@@ -212,58 +165,44 @@
 
     <section id="shippingCosts">
       <h2 class="heading text-center">Shpping cost</h2>
-      <table>
+      <table id="shipping">
         <caption>
-          Shipping cost according to the price and weight of the item puchased
+          Shipping cost according to the Destination
         </caption>
-        <tr>
-          <th>Item price &pound;</th>
-          <th>Item weight g</th>
-          <th>Shipping price &pound;</th>
-        </tr>
-        <tr>
-          <td rowspan="3">Less than 50</td>
-          <td>greater than 200</td>
-          <td>15</td>
-        </tr>
-        <tr>
-          <td>200 or lesser</td>
-          <td>10</td>
-        </tr>
-        <tr>
-          <td>Less than 20</td>
-          <td>5</td>
-        </tr>
-        <tr>
-          <td rowspan="3">greater than 50</td>
-          <td>greater than 200</td>
-          <td>10</td>
-        </tr>
-        <tr>
-          <td>200 or lesser</td>
-          <td>5</td>
-        </tr>
-        <tr>
-          <td>Less than 20</td>
-          <td>3</td>
-        </tr>
-        <tr>
-          <td rowspan="3">greater than 200</td>
-          <td>greater than 200</td>
-          <td>5</td>
-        </tr>
-        <tr>
-          <td>200 or lesser</td>
-          <td>3</td>
-        </tr>
-        <tr>
-          <td>Less than 20</td>
-          <td>Free</td>
-        </tr>
-        <tr>
-          <td colspan="2">Greater than 500</td>
-          <td>Free</td>
-        </tr>
+        <thead>
+          <tr>
+            <th>Country/Region</th>
+            <th>Shipping price &pound;</th>
+            <th>Estimated shipping time (days)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Europe</td>
+            <td>5</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>UK</td>
+            <td>8</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>America</td>
+            <td>12</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td>Australia</td>
+            <td>15</td>
+            <td>8</td>
+          </tr>
+          <tr>
+            <td>Asia</td>
+            <td>20</td>
+            <td>3</td>
+          </tr>
+        </tbody>
       </table>
     </section>
 

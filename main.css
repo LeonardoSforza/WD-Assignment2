@@ -227,6 +227,10 @@ input:focus {
   text-align: center;
 }
 
+.text-lower {
+  text-transform: lowercase;
+}
+
 .full-width {
   width: 100%;
 }
