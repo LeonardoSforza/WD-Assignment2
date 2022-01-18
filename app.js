@@ -16,18 +16,18 @@ const populateTable = (table, data) => {
 
 let tableContent = [
   {
-    brand: "apple",
+    brand: "Apple",
     model: "iPhone 13",
     os: "ios",
-    screensize: "6.68",
+    screensize: 6.68,
     image:
       "https://www.notebookcheck.nl/uploads/tx_nbc2/AppleiPhone13ProMax.jpg",
   },
   {
-    brand: "apple",
+    brand: "Apple",
     model: "iPad Pro",
     os: "ios",
-    screensize: "12.9",
+    screensize: 12.9,
     image:
       "https://static.iphoned.nl/orca/products/9569/apple-ipad-pro-2021.jpg",
   },
@@ -35,18 +35,20 @@ let tableContent = [
     brand: "Samsung",
     model: "Samsung Galaxy Z Flip3",
     os: "Android",
-    screensize: "6.7",
+    screensize: 6.7,
     image:
       "https://www.mytrendyphone.nl/images/Samsung-Galaxy-Z-Flip3-5G-256GB-Phantom-Black-8806092563636-19082021-01-p.jpg",
   },
   {
-    brand: "apple",
+    brand: "Apple",
     model: "MacBook Pro",
     os: "ios",
-    screensize: "16",
+    screensize: 16,
     image: "https://static.iphoned.nl/orca/products/9402/apple-macbook-pro.jpg",
   },
 ];
+
+let addedContent = $.get("https://wt.ops.labs.vu.nl/api22/d8873618");
 
 const table = document.getElementById("first-tbody");
 
