@@ -95,13 +95,7 @@ populateTableTwo(tableTwo, shippingContent);
 
 let addedContent = [];
 
-const pushAddedToTable = () => {
-  for (let i = 0; i < addedContent.length; i++) {
-    tableContent.push(addedContent[i]);
-  }
-  populateTable(table, tableContent);
-  addedContent = [];
-};
+const table = document.getElementById("first-tbody");
 
 let arrayLength;
 
@@ -121,6 +115,7 @@ let getData = $.get(
     pushAddedToTable();
   }
 );
+populateTable(table, tableContent);
 
 $(".tableOneClickable").on("click", function () {
   const column = $(this).data("column");
@@ -160,7 +155,6 @@ $(".tableTwoClickable").on("click", function () {
   }
   populateTableTwo(tableTwo, shippingContent);
 });
-
 $("#submit-btn").on("click", function () {
   const test = {
     brand: document.getElementById("Brand").value,
