@@ -14,8 +14,6 @@ const populateTable = (table, data) => {
   }
 };
 
-const table = document.getElementById("first-tbody");
-
 let tableContent = [
   {
     brand: "apple",
@@ -50,31 +48,16 @@ let tableContent = [
   },
 ];
 
-let addedContent = [];
+// let addedContent = $.get(
+//   "https://wt.ops.labs.vu.nl/api22/d8873618",
+//   function (data, textStatus, jqXHR) {
+//     alert("status: " + textStatus + ", data:" + data);
+//   }
+// );
 
-const pushAddedToTable = () => {
-  for (let i = 0; i < addedContent.length; i++) {
-    tableContent.push(addedContent[i]);
-  }
-  populateTable(table, tableContent);
-  addedContent = [];
-};
+const table = document.getElementById("first-tbody");
 
-let getData = $.get(
-  "https://wt.ops.labs.vu.nl/api22/d8873618",
-  function (data, textStatus, jqXHR) {
-    for (let i = 0; i < data.length; i++) {
-      addedContent.push({
-        brand: data[i].brand.toLowerCase(),
-        model: data[i].model.toLowerCase(),
-        os: data[i].os.toLowerCase(),
-        screensize: data[i].screensize,
-        image: data[i].image,
-      });
-    }
-    pushAddedToTable();
-  }
-);
+populateTable(table, tableContent);
 
 $("th").on("click", function () {
   const column = $(this).data("column");
@@ -91,19 +74,12 @@ $("th").on("click", function () {
       a[column] < b[column] ? 1 : -1
     );
   }
+
   populateTable(table, tableContent);
 });
 
-// $("#submit-btn").on("click", function () {
-//   $.ajax({
-//     url: "https://wt.ops.labs.vu.nl/api22/d8873618",
-//     method: "POST",
-//     data:
-//   });
-// });
-
 $("#submit-btn").on("click", function () {
-  let addedContent = $.post(
+  let addedContent = $.get(
     "https://wt.ops.labs.vu.nl/api22/d8873618",
     function (data, textStatus, jqXHR) {
       for (let i = 0; i < data.length; i++) {
@@ -126,8 +102,6 @@ $("#reset-btn").on("click", function () {
   $.ajax({
     url: "https://wt.ops.labs.vu.nl/api22/d8873618/reset",
     method: "GET",
-    // data: requestData,
-    // dataType: "json",
   });
-  // $.get("https://wt.ops.labs.vu.nl/api22/d8873618/reset");
+  $.get("https://wt.ops.labs.vu.nl/api22/d8873618/reset");
 });
