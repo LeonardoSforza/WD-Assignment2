@@ -1,5 +1,5 @@
 const populateTable = (table, data) => {
-  table.innerHTML = "";
+  console.log(`Starting to populate, with ${data.length}`);
   for (let i = 0; i < data.length; i++) {
     const row = `<tr>
                             <td class="text-lower">${data[i].brand}</td>
@@ -14,7 +14,20 @@ const populateTable = (table, data) => {
   }
 };
 
+const populateTableTwo = (a, b) => {
+  tableTwo.innerHTML = "";
+  for (let i = 0; i < b.length; i++) {
+    const row = `<tr>
+                  <td>${b[i].country}</td>
+                  <td>${b[i].cost}</td>
+                  <td>${b[i].time}</td>
+                </tr>`;
+    a.innerHTML += row;
+  }
+};
+
 const table = document.getElementById("first-tbody");
+const tableTwo = document.getElementById("second-tbody");
 
 let tableContent = [
   {
@@ -50,6 +63,36 @@ let tableContent = [
   },
 ];
 
+let shippingContent = [
+  {
+    country: "Europe",
+    cost: 5,
+    time: 1,
+  },
+  {
+    country: "UK",
+    cost: 8,
+    time: 2,
+  },
+  {
+    country: "America",
+    cost: 12,
+    time: 5,
+  },
+  {
+    country: "Australia",
+    cost: 15,
+    time: 8,
+  },
+  {
+    country: "Asia",
+    cost: 20,
+    time: 3,
+  },
+];
+
+populateTableTwo(tableTwo, shippingContent);
+
 let addedContent = [];
 
 const pushAddedToTable = () => {
@@ -60,9 +103,12 @@ const pushAddedToTable = () => {
   addedContent = [];
 };
 
+let arrayLength;
+
 let getData = $.get(
   "https://wt.ops.labs.vu.nl/api22/d8873618",
   function (data, textStatus, jqXHR) {
+    arrayLength = data.length;
     for (let i = 0; i < data.length; i++) {
       addedContent.push({
         brand: data[i].brand.toLowerCase(),
@@ -76,9 +122,11 @@ let getData = $.get(
   }
 );
 
-$("th").on("click", function () {
+$(".tableOneClickable").on("click", function () {
   const column = $(this).data("column");
   const order = $(this).data("order");
+
+  console.log(order);
 
   if (order == "desc") {
     $(this).data("order", "asc");
@@ -91,43 +139,82 @@ $("th").on("click", function () {
       a[column] < b[column] ? 1 : -1
     );
   }
+  table.innerHTML = "";
   populateTable(table, tableContent);
 });
 
-// $("#submit-btn").on("click", function () {
-//   $.ajax({
-//     url: "https://wt.ops.labs.vu.nl/api22/d8873618",
-//     method: "POST",
-//     data:
-//   });
-// });
+$(".tableTwoClickable").on("click", function () {
+  const column = $(this).data("column");
+  const order = $(this).data("order");
+
+  if (order == "desc") {
+    $(this).data("order", "asc");
+    shippingContent = shippingContent.sort((a, b) =>
+      a[column] > b[column] ? 1 : -1
+    );
+  } else {
+    $(this).data("order", "desc");
+    shippingContent = shippingContent.sort((a, b) =>
+      a[column] < b[column] ? 1 : -1
+    );
+  }
+  populateTableTwo(tableTwo, shippingContent);
+});
 
 $("#submit-btn").on("click", function () {
-  let addedContent = $.post(
-    "https://wt.ops.labs.vu.nl/api22/d8873618",
-    function (data, textStatus, jqXHR) {
-      for (let i = 0; i < data.length; i++) {
-        tableContent.push({
-          brand: data[i].brand,
-          model: data[i].model,
-          os: data[i].os,
-          screensize: data[i].screensize,
-          image: data[i].image,
-        });
-      }
-      populateTable(table, tableContent);
-    }
-  );
-
-  console.log(tableContent);
+  const test = {
+    brand: document.getElementById("Brand").value,
+    model: document.getElementById("Model").value,
+    os: document.getElementById("OS").value,
+    screensize: document.getElementById("Screensize").value,
+    image: document.getElementById("Image").value,
+  };
+  $.ajax({
+    url: "https://wt.ops.labs.vu.nl/api22/d8873618",
+    method: "POST",
+    data: test,
+    dataType: "json",
+  }).done(function () {
+    console.log("Successful");
+    const testList = [];
+    testList.push(test);
+    populateTable(table, testList);
+    document.getElementById("Brand").value = "";
+    document.getElementById("Model").value = "";
+    document.getElementById("OS").value = "";
+    document.getElementById("Screensize").value = "";
+    document.getElementById("Image").value = "";
+  });
 });
 
 $("#reset-btn").on("click", function () {
   $.ajax({
     url: "https://wt.ops.labs.vu.nl/api22/d8873618/reset",
     method: "GET",
-    // data: requestData,
-    // dataType: "json",
+  }).done(function () {
+    console.log(`Before Loop, array length: ${arrayLength}`);
+    for (let i = 0; i < arrayLength; i++) {
+      console.log("Popping");
+      tableContent.pop();
+    }
+    console.log("After For Loop");
+    console.log(`Content: ${tableContent.length}`);
+    table.innerHTML = "";
+    let getData = $.get(
+      "https://wt.ops.labs.vu.nl/api22/d8873618",
+      function (data, textStatus, jqXHR) {
+        arrayLength = data.length;
+        for (let i = 0; i < data.length; i++) {
+          addedContent.push({
+            brand: data[i].brand.toLowerCase(),
+            model: data[i].model.toLowerCase(),
+            os: data[i].os.toLowerCase(),
+            screensize: data[i].screensize,
+            image: data[i].image,
+          });
+        }
+        pushAddedToTable();
+      }
+    );
   });
-  // $.get("https://wt.ops.labs.vu.nl/api22/d8873618/reset");
 });

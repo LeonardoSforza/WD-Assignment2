@@ -91,10 +91,34 @@
             Last updated on 01/01/2022
           </caption>
           <tr>
-            <th data-column="brand" data-order="desc">Brand</th>
-            <th data-column="model" data-order="desc">Model</th>
-            <th data-column="os" data-order="desc">os</th>
-            <th data-column="screensize" data-order="desc">Screensize</th>
+            <th
+              class="clickable tableOneClickable"
+              data-column="brand"
+              data-order="desc"
+            >
+              Brand
+            </th>
+            <th
+              class="clickable tableOneClickable"
+              data-column="model"
+              data-order="desc"
+            >
+              Model
+            </th>
+            <th
+              class="clickable tableOneClickable"
+              data-column="os"
+              data-order="desc"
+            >
+              os
+            </th>
+            <th
+              class="clickable tableOneClickable"
+              data-column="screensize"
+              data-order="desc"
+            >
+              Screensize
+            </th>
             <th>Image</th>
           </tr>
           <tbody id="first-tbody"></tbody>
@@ -155,7 +179,7 @@
           </tr>
           <tr class="noprint">
             <td colspan="5" class="noprint">
-              <input id="submit-btn" type="submit" value="Submit" />
+              <input id="submit-btn" type="button" value="Submit" />
               <input id="reset-btn" type="reset" value="Reset" />
             </td>
           </tr>
@@ -171,13 +195,31 @@
         </caption>
         <thead>
           <tr>
-            <th>Country/Region</th>
-            <th>Shipping price &pound;</th>
-            <th>Estimated shipping time (days)</th>
+            <th
+              class="clickable tableTwoClickable"
+              data-column="country"
+              data-order="desc"
+            >
+              Country/Region
+            </th>
+            <th
+              class="clickable tableTwoClickable"
+              data-column="cost"
+              data-order="desc"
+            >
+              Shipping price &pound;
+            </th>
+            <th
+              class="clickable tableTwoClickable"
+              data-column="time"
+              data-order="desc"
+            >
+              Estimated shipping time (days)
+            </th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
+        <tbody id="second-tbody">
+          <!-- <tr>
             <td>Europe</td>
             <td>5</td>
             <td>1</td>
@@ -201,7 +243,7 @@
             <td>Asia</td>
             <td>20</td>
             <td>3</td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </section>

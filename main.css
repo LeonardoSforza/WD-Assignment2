@@ -137,6 +137,10 @@ th {
   font-weight: 400;
 }
 
+.clickable:hover {
+  cursor: pointer;
+}
+
 tr:nth-child(even) {
   background: #f2f2f2;
 }
