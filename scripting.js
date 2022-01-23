@@ -171,6 +171,7 @@ $("#submit-btn").on("click", function () {
     console.log("Successful");
     const inputValuesList = [];
     inputValuesList.push(inputValues);
+    tableContent.push(inputValues);
     populateTable(table, inputValuesList);
     document.getElementById("Brand").value = "";
     document.getElementById("Model").value = "";
