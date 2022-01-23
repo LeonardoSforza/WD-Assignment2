@@ -2,14 +2,14 @@ const populateTable = (table, data) => {
   console.log(`Starting to populate, with ${data.length}`);
   for (let i = 0; i < data.length; i++) {
     const row = `<tr>
-                            <td class="text-lower">${data[i].brand}</td>
-                            <td class="text-lower">${data[i].model}</td>
-                            <td class="text-lower">${data[i].os}</td>
-                            <td>${data[i].screensize}</td>
-                            <td>
-                                <img src="${data[i].image}">
-                            </td>
-                        </tr>`;
+                    <td class="text-lower">${data[i].brand}</td>
+                    <td class="text-lower">${data[i].model}</td>
+                    <td class="text-lower">${data[i].os}</td>
+                    <td>${data[i].screensize}</td>
+                    <td>
+                        <img src="${data[i].image}">
+                    </td>
+                </tr>`;
     table.innerHTML += row;
   }
 };
@@ -24,6 +24,14 @@ const populateTableTwo = (a, b) => {
                 </tr>`;
     a.innerHTML += row;
   }
+};
+
+const pushAddedToTable = () => {
+  for (let i = 0; i < addedContent.length; i++) {
+    tableContent.push(addedContent[i]);
+  }
+  populateTable(table, tableContent);
+  addedContent = [];
 };
 
 const table = document.getElementById("first-tbody");
@@ -94,34 +102,25 @@ let shippingContent = [
 populateTableTwo(tableTwo, shippingContent);
 
 let addedContent = [];
-
-const table = document.getElementById("first-tbody");
-
 let arrayLength;
 
-let getData = $.get(
-  "https://wt.ops.labs.vu.nl/api22/d8873618",
-  function (data, textStatus, jqXHR) {
-    arrayLength = data.length;
-    for (let i = 0; i < data.length; i++) {
-      addedContent.push({
-        brand: data[i].brand.toLowerCase(),
-        model: data[i].model.toLowerCase(),
-        os: data[i].os.toLowerCase(),
-        screensize: data[i].screensize,
-        image: data[i].image,
-      });
-    }
-    pushAddedToTable();
+$.get("https://wt.ops.labs.vu.nl/api22/d8873618", function (data) {
+  arrayLength = data.length;
+  for (let i = 0; i < data.length; i++) {
+    addedContent.push({
+      brand: data[i].brand.toLowerCase(),
+      model: data[i].model.toLowerCase(),
+      os: data[i].os.toLowerCase(),
+      screensize: data[i].screensize,
+      image: data[i].image,
+    });
   }
-);
-populateTable(table, tableContent);
+  pushAddedToTable();
+});
 
 $(".tableOneClickable").on("click", function () {
   const column = $(this).data("column");
   const order = $(this).data("order");
-
-  console.log(order);
 
   if (order == "desc") {
     $(this).data("order", "asc");
@@ -156,7 +155,7 @@ $(".tableTwoClickable").on("click", function () {
   populateTableTwo(tableTwo, shippingContent);
 });
 $("#submit-btn").on("click", function () {
-  const test = {
+  const inputValues = {
     brand: document.getElementById("Brand").value,
     model: document.getElementById("Model").value,
     os: document.getElementById("OS").value,
@@ -166,13 +165,13 @@ $("#submit-btn").on("click", function () {
   $.ajax({
     url: "https://wt.ops.labs.vu.nl/api22/d8873618",
     method: "POST",
-    data: test,
+    data: inputValues,
     dataType: "json",
   }).done(function () {
     console.log("Successful");
-    const testList = [];
-    testList.push(test);
-    populateTable(table, testList);
+    const inputValuesList = [];
+    inputValuesList.push(inputValues);
+    populateTable(table, inputValuesList);
     document.getElementById("Brand").value = "";
     document.getElementById("Model").value = "";
     document.getElementById("OS").value = "";
